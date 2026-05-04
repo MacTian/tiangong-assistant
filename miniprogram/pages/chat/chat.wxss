@@ -1,0 +1,137 @@
+/* miniprogram/pages/chat/chat.wxss */
+.chat-scroll {
+  height: calc(100vh - 56px);
+  padding-bottom: 16px;
+}
+
+.chat-container {
+  padding: 16px;
+}
+
+.msg-row {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.msg-right {
+  justify-content: flex-end;
+}
+
+.msg-left {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.bubble-user {
+  background: #07c160;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble-ai {
+  background: #fff;
+  color: #333;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.sources {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.sources-title {
+  font-size: 12px;
+  color: #999;
+}
+
+.source-item {
+  font-size: 12px;
+  color: #576b95;
+  padding: 4px 0;
+}
+
+.source-item:active {
+  opacity: 0.7;
+}
+
+.feedback {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.feedback-btn {
+  font-size: 16px;
+  padding: 2px 6px;
+}
+
+.feedback-text {
+  font-size: 16px;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #999;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg-input {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.send-btn {
+  background: #ccc;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.send-btn.active {
+  background: #07c160;
+}
