@@ -1,0 +1,35 @@
+<!-- miniprogram/pages/notes/notes.wxml -->
+<view class="container">
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+  <view wx:else>
+    <view wx:if="{{notebooks.length === 0}}" class="empty-state">
+      <text>📭 暂无笔记</text>
+      <text class="empty-hint">连接 OneNote 后同步笔记</text>
+    </view>
+
+    <block wx:for="{{notebooks}}" wx:key="id">
+      <view class="card notebook-card">
+        <view class="notebook-header" bindtap="toggleNotebook" data-index="{{index}}">
+          <text class="notebook-icon">📓</text>
+          <text class="notebook-name">{{item.name}}</text>
+          <text class="notebook-count">{{item.pageCount}} 篇</text>
+          <text class="expand-icon">{{item.expanded ? '▼' : '▶'}}</text>
+        </view>
+
+        <view class="sections" wx:if="{{item.expanded}}">
+          <block wx:for="{{item.sections}}" wx:for-item="section" wx:key="id">
+            <view class="section-item" bindtap="onSectionTap" data-section="{{section}}" data-notebook="{{item}}">
+              <text class="section-icon">📂</text>
+              <text class="section-name">{{section.name}}</text>
+              <text class="section-count">{{section.pageCount}} 篇</text>
+            </view>
+          </block>
+          <view wx:if="{{item.sections.length === 0}}" class="empty-hint" style="padding: 8px 0;">
+            正在加载分区...
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

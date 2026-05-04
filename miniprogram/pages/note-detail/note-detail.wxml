@@ -1,0 +1,60 @@
+<!-- miniprogram/pages/note-detail/note-detail.wxml -->
+<view class="container">
+  <!-- 页面列表模式 -->
+  <block wx:if="{{!pageDetailMode}}">
+    <view class="section-header">
+      <text class="section-path">《{{notebookName}}》/ {{sectionName}}</text>
+    </view>
+
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+    <view wx:elif="{{pages.length === 0}}" class="empty-state">
+      <text>该分区暂无页面</text>
+    </view>
+
+    <view wx:else>
+      <view
+        class="card page-item"
+        wx:for="{{pages}}"
+        bindtap="onPageTap"
+        data-item="{{item}}"
+      >
+        <text class="page-title">{{item.title}}</text>
+        <text class="page-date">{{item.modifiedDate}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 单页详情模式 -->
+  <block wx:if="{{pageDetailMode}}">
+    <view class="page-detail-header">
+      <text class="page-detail-title">{{currentPage.title}}</text>
+      <text class="page-detail-date">修改于 {{currentPage.modifiedDate}}</text>
+    </view>
+
+    <view class="card page-content">
+      <text>{{currentPage.textContent}}</text>
+    </view>
+
+    <!-- 附件 -->
+    <view class="card" wx:if="{{currentPage.attachments.length > 0}}">
+      <view class="card-title">📎 附件</view>
+      <view
+        class="attachment-item"
+        wx:for="{{currentPage.attachments}}"
+        bindtap="onAttachmentTap"
+        data-url="{{item.url}}"
+      >
+        <text>{{item.name}}</text>
+        <text class="attachment-link">查看 →</text>
+      </view>
+    </view>
+
+    <!-- 在 OneNote 中打开 -->
+    <view class="card">
+      <view class="btn-primary" bindtap="openInOneNote">
+        🔗 在 OneNote 中打开
+      </view>
+    </view>
+  </block>
+</view>

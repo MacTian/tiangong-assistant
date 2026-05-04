@@ -1,0 +1,73 @@
+/* miniprogram/pages/note-detail/note-detail.wxss */
+.section-header {
+  padding: 12px 0;
+}
+
+.section-path {
+  font-size: 13px;
+  color: #999;
+}
+
+.page-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-item:active {
+  background: #f9f9f9;
+}
+
+.page-title {
+  flex: 1;
+  font-size: 15px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-date {
+  font-size: 12px;
+  color: #999;
+  margin-left: 12px;
+}
+
+.page-detail-header {
+  margin-bottom: 16px;
+}
+
+.page-detail-title {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+}
+
+.page-detail-date {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+  display: block;
+}
+
+.page-content {
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.attachment-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.attachment-item:last-child {
+  border-bottom: none;
+}
+
+.attachment-link {
+  color: #576b95;
+  font-size: 13px;
+}
