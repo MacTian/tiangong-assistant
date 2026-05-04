@@ -1,0 +1,14 @@
+{
+  "description": "天工助手云函数",
+  "cloudfunctionRoot": "./",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "minified": true
+  },
+  "compileType": "cloudfunction",
+  "libVersion": "3.6.5",
+  "appid": "wx96770931062908b2",
+  "projectname": "tiangong-assistant-cloud"
+}

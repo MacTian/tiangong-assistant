@@ -1,0 +1,25 @@
+{
+  "description": "天工助手 — 个人知识库微信小程序",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "minified": true,
+    "feature": {
+      "es7": true
+    },
+    "compileWorklet": false,
+    "minifyWXML": true,
+    "minifyWXSS": true,
+    "autoAudits": false,
+    "coverView": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "ignoreUploadUnusedFiles": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.6.5",
+  "appid": "wx96770931062908b2",
+  "projectname": "tiangong-assistant",
+  "condition": {}
+}
