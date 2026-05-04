@@ -1,0 +1,55 @@
+<!-- miniprogram/pages/index/index.wxml -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="搜索笔记 或 直接提问..."
+      value="{{question}}"
+      bindinput="onInput"
+      bindconfirm="onSearch"
+      confirm-type="search"
+    />
+    <view class="search-btn" bindtap="onSearch">提问</view>
+  </view>
+
+  <!-- 知识库状态 -->
+  <view class="card status-card">
+    <view class="status-row">
+      <text class="status-label">📚 知识库</text>
+      <text class="status-value">{{stats.totalChunks || 0}} 个片段</text>
+    </view>
+    <view class="status-row">
+      <text class="status-label">⏰ 最后同步</text>
+      <text class="status-value">{{lastSyncText}}</text>
+    </view>
+    <view class="status-row" wx:if="{{authConnected}}">
+      <text class="status-label">🔗 OneNote</text>
+      <text class="status-value" style="color: #07c160;">已连接</text>
+    </view>
+    <view class="status-row" wx:if="{{!authConnected}}">
+      <text class="status-label">🔗 OneNote</text>
+      <text class="status-value" style="color: #fa5151;">未连接</text>
+    </view>
+  </view>
+
+  <!-- 最近提问 -->
+  <view class="card" wx:if="{{recentQuestions.length > 0}}">
+    <view class="card-title">💡 最近提问</view>
+    <view
+      class="recent-item"
+      wx:for="{{recentQuestions}}"
+      bindtap="onRecentTap"
+      data-index="{{index}}"
+    >
+      <text class="recent-text">{{item.question}}</text>
+      <text class="recent-date">{{item.date}}</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{recentQuestions.length === 0}}">
+    <text>👋 欢迎使用天工助手</text>
+    <text class="empty-hint">连接 OneNote 后，即可用自然语言提问</text>
+  </view>
+</view>
