@@ -1,0 +1,93 @@
+/* miniprogram/pages/sync/sync.wxss */
+.sync-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.sync-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sync-status {
+  font-size: 13px;
+  color: #07c160;
+}
+
+.sync-hint {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.toggle-item:last-child {
+  border-bottom: none;
+}
+
+.toggle-name {
+  font-size: 14px;
+}
+
+.toggle-switch {
+  font-size: 16px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.toggle-switch.on {
+  color: #07c160;
+}
+
+.toggle-switch.off {
+  color: #999;
+}
+
+.log-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.log-status {
+  font-size: 14px;
+}
+
+.log-time {
+  font-size: 13px;
+  color: #666;
+}
+
+.log-detail {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+  display: block;
+}
+
+.log-error {
+  font-size: 12px;
+  color: #fa5151;
+  margin-top: 4px;
+  display: block;
+}

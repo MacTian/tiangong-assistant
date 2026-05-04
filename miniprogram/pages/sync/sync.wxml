@@ -1,0 +1,51 @@
+<!-- miniprogram/pages/sync/sync.wxml -->
+<view class="container">
+  <!-- 同步操作 -->
+  <view class="card">
+    <view class="sync-header">
+      <text class="sync-title">OneNote 同步</text>
+      <text wx:if="{{syncing}}" class="sync-status">同步中...</text>
+    </view>
+    <view class="btn-primary {{syncing ? 'disabled' : ''}}" bindtap="onSyncTap">
+      {{syncing ? '同步中...' : '🔄 立即同步'}}
+    </view>
+    <text class="sync-hint" wx:if="{{lastSyncTime}}">
+      上次同步：{{lastSyncTime}}
+    </text>
+  </view>
+
+  <!-- 笔记本同步开关 -->
+  <view class="card" wx:if="{{notebooks.length > 0}}">
+    <view class="card-title">📚 同步范围</view>
+    <view
+      class="toggle-item"
+      wx:for="{{notebooks}}"
+      bindtap="toggleNotebook"
+      data-index="{{index}}"
+    >
+      <text class="toggle-name">{{item.name}} ({{item.pageCount}}篇)</text>
+      <text class="toggle-switch {{item.syncEnabled ? 'on' : 'off'}}">
+        {{item.syncEnabled ? '✓' : '✗'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- 同步日志 -->
+  <view class="card">
+    <view class="card-title">📋 同步日志</view>
+    <view wx:if="{{logs.length === 0}}" class="empty-hint">暂无同步记录</view>
+    <view class="log-item" wx:for="{{logs}}">
+      <view class="log-header">
+        <text class="log-status {{item.status === 'success' ? 'success' : 'error'}}">
+          {{item.status === 'success' ? '✅' : '❌'}}
+        </text>
+        <text class="log-time">{{item.time}}</text>
+      </view>
+      <text class="log-detail">
+        新增 {{item.added || 0}} 篇，更新 {{item.updated || 0}} 篇
+        <text wx:if="{{item.duration}}">，耗时 {{item.duration}}s</text>
+      </text>
+      <text class="log-error" wx:if="{{item.error}}">{{item.error}}</text>
+    </view>
+  </view>
+</view>
