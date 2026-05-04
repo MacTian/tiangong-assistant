@@ -1,0 +1,38 @@
+<!-- miniprogram/pages/settings/settings.wxml -->
+<view class="container">
+  <!-- OneNote 授权 -->
+  <view class="card">
+    <view class="setting-item" bindtap="onAuthTap">
+      <text class="setting-label">🔗 OneNote 授权</text>
+      <text class="setting-value {{authConnected ? 'connected' : 'disconnected'}}">
+        {{authConnected ? '已连接 ✓' : '未连接'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- 同步频率 -->
+  <view class="card">
+    <view class="setting-item">
+      <text class="setting-label">⏰ 自动同步</text>
+      <text class="setting-value">每天 03:00</text>
+    </view>
+  </view>
+
+  <!-- 清空知识库 -->
+  <view class="card">
+    <view class="setting-item" bindtap="onClearTap">
+      <text class="setting-label danger">🗑 清空知识库</text>
+      <text class="setting-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="card">
+    <view class="setting-item" bindtap="onAboutTap">
+      <text class="setting-label">ℹ 关于</text>
+      <text class="setting-arrow">›</text>
+    </view>
+  </view>
+
+  <text class="version-text">天工助手 v1.0.0</text>
+</view>

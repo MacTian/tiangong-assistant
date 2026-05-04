@@ -1,0 +1,42 @@
+/* miniprogram/pages/settings/settings.wxss */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.setting-label {
+  font-size: 15px;
+  color: #333;
+}
+
+.setting-label.danger {
+  color: #fa5151;
+}
+
+.setting-value {
+  font-size: 14px;
+  color: #999;
+}
+
+.setting-value.connected {
+  color: #07c160;
+}
+
+.setting-value.disconnected {
+  color: #fa5151;
+}
+
+.setting-arrow {
+  font-size: 18px;
+  color: #ccc;
+}
+
+.version-text {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 40px;
+}
