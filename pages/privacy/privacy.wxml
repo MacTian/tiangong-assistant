@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="header">
+    <text class="title">隐私政策</text>
+    <text class="update-date">更新日期：2026年5月4日</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">一、引言</text>
+    <text class="section-content">天工金句（以下简称"我们"或"本小程序"）非常重视您的隐私。本隐私政策说明了我们如何收集、使用和保护您的信息。</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">二、信息收集</text>
+    <text class="section-content">本小程序收集的信息包括：
+    1. 您主动收藏的金句数据，仅存储在您的设备本地，不会上传到任何服务器。
+    2. 一言 API（v1.hitokoto.cn）返回的金句内容，仅用于展示，不会被存储或用于其他目的。</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">三、信息使用</text>
+    <text class="section-content">我们收集的信息仅用于：
+    1. 展示每日金句内容。
+    2. 在您的设备本地保存和管理您的收藏列表。</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">四、数据存储</text>
+    <text class="section-content">您的收藏数据仅存储在您的设备本地（通过微信小程序的本地存储 API），我们不会将您的数据上传到任何服务器。清除小程序缓存或卸载小程序将导致收藏数据丢失。</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">五、第三方服务</text>
+    <text class="section-content">本小程序使用了以下第三方服务：
+    1. 一言 API（v1.hitokoto.cn）：用于获取每日金句内容。该服务的隐私政策请参考其官方网站。</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">六、联系我们</text>
+    <text class="section-content">如果您对本隐私政策有任何疑问，请通过小程序内的客服功能联系我们。</text>
+  </view>
+
+  <button class="agree-btn" bindtap="onAgree">我已阅读并同意</button>
+</view>

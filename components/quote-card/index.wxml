@@ -1,0 +1,27 @@
+<view class="quote-card">
+  <view class="quote-content">
+    <text class="quote-mark left">"</text>
+    <text class="quote-text">{{content}}</text>
+    <text class="quote-mark right">"</text>
+  </view>
+
+  <view class="quote-meta" wx:if="{{author || from}}">
+    <text class="quote-from" wx:if="{{from}}">—— 《{{from}}》</text>
+    <text class="quote-author" wx:if="{{author}}">{{author}}</text>
+  </view>
+
+  <view class="quote-actions" wx:if="{{showActions}}">
+    <view class="action-btn" bindtap="onRefresh">
+      <text class="icon">🔄</text>
+      <text class="label">换一句</text>
+    </view>
+    <view class="action-btn" bindtap="onFavorite">
+      <text class="icon">{{isFavorited ? '❤️' : '🤍'}}</text>
+      <text class="label">{{isFavorited ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="action-btn" bindtap="onShare">
+      <text class="icon">📤</text>
+      <text class="label">分享</text>
+    </view>
+  </view>
+</view>

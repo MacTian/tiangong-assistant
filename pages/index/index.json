@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "天工金句",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "quote-card": "/components/quote-card/index"
+  }
+}
