@@ -1,7 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/favorites/favorites"
+    "pages/favorites/favorites",
+    "pages/admin/index/index",
+    "pages/admin/login/login",
+    "pages/admin/requests/requests",
+    "pages/admin/licenses/licenses",
+    "pages/admin/logs/logs",
+    "pages/admin/history/history",
+    "pages/admin/offline/offline",
+    "pages/privacy/privacy"
   ],
   "window": {
     "navigationBarTitleText": "天工金句",
@@ -26,6 +34,12 @@
         "text": "收藏",
         "iconPath": "images/heart.png",
         "selectedIconPath": "images/heart-active.png"
+      },
+      {
+        "pagePath": "pages/admin/index/index",
+        "text": "管理",
+        "iconPath": "images/admin.png",
+        "selectedIconPath": "images/admin-active.png"
       }
     ]
   },

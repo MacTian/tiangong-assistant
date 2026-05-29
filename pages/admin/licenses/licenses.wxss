@@ -1,0 +1,159 @@
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 20rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #ecf0f1;
+  border-top: 4rpx solid #2c3e50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #7f8c8d;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #95a5a6;
+  margin-bottom: 40rpx;
+}
+
+.refresh-btn {
+  background: #2c3e50;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 14rpx 50rpx;
+  border-radius: 30rpx;
+  border: none;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 10rpx 20rpx;
+}
+
+.list-count {
+  font-size: 26rpx;
+  color: #7f8c8d;
+}
+
+.refresh-link {
+  font-size: 26rpx;
+  color: #3498db;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background: #f8f9fa;
+  border-bottom: 1rpx solid #ecf0f1;
+}
+
+.card-code {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  font-family: monospace;
+}
+
+.card-status {
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.card-status.active {
+  background: #eafaf1;
+  color: #27ae60;
+}
+
+.card-status.revoked {
+  background: #fdedec;
+  color: #e74c3c;
+}
+
+.card-status.expired {
+  background: #fef9e7;
+  color: #f39c12;
+}
+
+.card-body {
+  padding: 20rpx 24rpx;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #95a5a6;
+  width: 140rpx;
+  flex-shrink: 0;
+}
+
+.info-value {
+  font-size: 24rpx;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.card-actions {
+  padding: 16rpx 24rpx;
+  border-top: 1rpx solid #ecf0f1;
+}
+
+.btn-revoke {
+  width: 100%;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 26rpx;
+  padding: 14rpx 0;
+  border-radius: 8rpx;
+  border: none;
+}

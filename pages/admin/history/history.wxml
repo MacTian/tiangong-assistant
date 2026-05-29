@@ -1,0 +1,53 @@
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{filter === 'all' ? 'active' : ''}}" bindtap="setFilter" data-filter="all">全部</view>
+    <view class="filter-item {{filter === 'approved' ? 'active' : ''}}" bindtap="setFilter" data-filter="approved">已批准</view>
+    <view class="filter-item {{filter === 'rejected' ? 'active' : ''}}" bindtap="setFilter" data-filter="rejected">已拒绝</view>
+    <view class="filter-item {{filter === 'expired' ? 'active' : ''}}" bindtap="setFilter" data-filter="expired">已过期</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view class="empty" wx:elif="{{filteredList.length === 0}}">
+    <text class="empty-icon">📝</text>
+    <text class="empty-text">暂无{{filterLabel}}记录</text>
+  </view>
+
+  <view class="list" wx:else>
+    <view class="list-header">
+      <text class="list-count">共 {{filteredList.length}} 条记录</text>
+    </view>
+
+    <view class="card" wx:for="{{filteredList}}" wx:key="requestCode">
+      <view class="card-header">
+        <text class="card-tag {{item.status === 1 ? 'approved' : item.status === 2 ? 'rejected' : 'expired'}}">
+          {{item.status === 1 ? '已批准' : item.status === 2 ? '已拒绝' : '已过期'}}
+        </text>
+        <text class="card-time">{{item.requestedAtFormatted}}</text>
+      </view>
+
+      <view class="card-body">
+        <view class="info-row">
+          <text class="info-label">请求码</text>
+          <text class="info-value code">{{item.requestCode}}</text>
+        </view>
+        <view class="info-row" wx:if="{{item.softwareId}}">
+          <text class="info-label">软件ID</text>
+          <text class="info-value">{{item.softwareId}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">设备指纹</text>
+          <text class="info-value mono">{{item.deviceFingerprint}}</text>
+        </view>
+        <view class="info-row" wx:if="{{item.notes}}">
+          <text class="info-label">备注</text>
+          <text class="info-value">{{item.notes}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

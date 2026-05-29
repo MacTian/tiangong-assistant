@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="logo-section">
+    <text class="logo-icon">🔐</text>
+    <text class="logo-title">License 管理</text>
+    <text class="logo-subtitle">授权管理系统后台</text>
+  </view>
+
+  <view class="form-section">
+    <view class="input-group">
+      <text class="input-label">用户名</text>
+      <input
+        class="input-field"
+        placeholder="请输入用户名"
+        value="{{username}}"
+        bindinput="onUsernameInput"
+        focus="{{!username}}"
+      />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">密码</text>
+      <input
+        class="input-field"
+        type="password"
+        placeholder="请输入密码"
+        value="{{password}}"
+        bindinput="onPasswordInput"
+        bindconfirm="onLogin"
+      />
+    </view>
+
+    <button class="login-btn" bindtap="onLogin" loading="{{loading}}">
+      登 录
+    </button>
+
+    <view class="error-msg" wx:if="{{error}}">
+      <text>{{error}}</text>
+    </view>
+  </view>
+</view>

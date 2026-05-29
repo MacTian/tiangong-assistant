@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view class="empty" wx:elif="{{list.length === 0}}">
+    <text class="empty-icon">🔑</text>
+    <text class="empty-text">暂无授权码</text>
+    <button class="refresh-btn" bindtap="loadData">刷新</button>
+  </view>
+
+  <view class="list" wx:else>
+    <view class="list-header">
+      <text class="list-count">共 {{list.length}} 个授权码</text>
+      <text class="refresh-link" bindtap="loadData">刷新</text>
+    </view>
+
+    <view class="card" wx:for="{{list}}" wx:key="code">
+      <view class="card-header">
+        <text class="card-code">{{item.code}}</text>
+        <text class="card-status {{item.status === 0 ? 'active' : item.status === 1 ? 'revoked' : 'expired'}}">
+          {{item.status === 0 ? '有效' : item.status === 1 ? '已吊销' : '已过期'}}
+        </text>
+      </view>
+
+      <view class="card-body">
+        <view class="info-row">
+          <text class="info-label">类型</text>
+          <text class="info-value">{{item.type === 0 ? '临时授权' : '永久授权'}}</text>
+        </view>
+        <view class="info-row" wx:if="{{item.type === 0}}">
+          <text class="info-label">有效期</text>
+          <text class="info-value">{{item.durationDays}} 天</text>
+        </view>
+        <view class="info-row" wx:if="{{item.expiresAt}}">
+          <text class="info-label">到期时间</text>
+          <text class="info-value">{{item.expiresAtFormatted}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">创建时间</text>
+          <text class="info-value">{{item.createdAtFormatted}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">激活设备</text>
+          <text class="info-value">{{item.activationCount || 0}} / {{item.maxActivations}}</text>
+        </view>
+      </view>
+
+      <view class="card-actions" wx:if="{{item.status === 0}}">
+        <button class="btn-revoke" bindtap="onRevoke" data-index="{{index}}">吊销授权</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 未登录 -->
+  <view class="login-prompt" wx:if="{{!isLoggedIn}}">
+    <text class="prompt-icon">🔒</text>
+    <text class="prompt-text">请先登录管理后台</text>
+    <button class="login-btn" bindtap="goLogin">去登录</button>
+  </view>
+
+  <!-- 已登录 -->
+  <block wx:else>
+    <view class="header">
+      <text class="header-title">License 管理</text>
+      <text class="header-subtitle">授权管理系统</text>
+    </view>
+
+    <view class="stats-bar">
+      <view class="stat-item">
+        <text class="stat-num">{{stats.pending || 0}}</text>
+        <text class="stat-label">待审批</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.active || 0}}</text>
+        <text class="stat-label">已激活</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.revoked || 0}}</text>
+        <text class="stat-label">已吊销</text>
+      </view>
+    </view>
+
+    <view class="menu-grid">
+      <view class="menu-item" bindtap="goPage" data-page="requests">
+        <text class="menu-icon">📋</text>
+        <text class="menu-title">待审批</text>
+        <text class="menu-desc">审核激活请求</text>
+      </view>
+      <view class="menu-item" bindtap="goPage" data-page="licenses">
+        <text class="menu-icon">🔑</text>
+        <text class="menu-title">授权码</text>
+        <text class="menu-desc">管理授权码</text>
+      </view>
+      <view class="menu-item" bindtap="goPage" data-page="logs">
+        <text class="menu-icon">📊</text>
+        <text class="menu-title">激活日志</text>
+        <text class="menu-desc">设备激活记录</text>
+      </view>
+      <view class="menu-item" bindtap="goPage" data-page="history">
+        <text class="menu-icon">📝</text>
+        <text class="menu-title">审批历史</text>
+        <text class="menu-desc">历史审批记录</text>
+      </view>
+      <view class="menu-item" bindtap="goPage" data-page="offline">
+        <text class="menu-icon">💾</text>
+        <text class="menu-title">离线激活</text>
+        <text class="menu-desc">生成离线授权</text>
+      </view>
+    </view>
+
+    <view class="logout-section">
+      <button class="logout-btn" bindtap="onLogout">退出登录</button>
+    </view>
+  </block>
+</view>
