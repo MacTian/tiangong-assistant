@@ -58,7 +58,7 @@ Page({
   onShareAppMessage() {
     const { quote } = this.data
     return {
-      title: `「${quote.hitokoto.substring(0, 20)}...」— 天工金句`,
+      title: `「${quote.hitokoto.substring(0, 20)}...」— 天工小助手`,
       path: '/pages/index/index',
       imageUrl: ''
     }
@@ -68,7 +68,7 @@ Page({
   onShareTimeline() {
     const { quote } = this.data
     return {
-      title: `「${quote.hitokoto}」— 天工金句`,
+      title: `「${quote.hitokoto}」— 天工小助手`,
       query: ''
     }
   }
