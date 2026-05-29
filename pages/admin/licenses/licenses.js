@@ -16,8 +16,8 @@ Page({
       const res = await licenseApi.getLicenses()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        createdAtFormatted: this.formatTime(item.createdAt),
-        expiresAtFormatted: item.expiresAt ? this.formatTime(item.expiresAt) : '永久'
+        createdAtFormatted: this.formatTime(item.CreatedAt),
+        expiresAtFormatted: item.ExpiresAt ? this.formatTime(item.ExpiresAt) : '永久'
       }))
       this.setData({ list, loading: false })
     } catch (err) {
@@ -39,11 +39,11 @@ Page({
 
     wx.showModal({
       title: '确认吊销',
-      content: `确定吊销授权码 ${item.code} 吗？吊销后该授权码将无法使用。`,
+      content: `确定吊销授权码 ${item.Code} 吗？吊销后该授权码将无法使用。`,
       success: async (res) => {
         if (res.confirm) {
           try {
-            await licenseApi.revokeLicense(item.code)
+            await licenseApi.revokeLicense(item.Code)
             wx.showToast({ title: '已吊销', icon: 'success' })
             this.loadData()
           } catch (err) {

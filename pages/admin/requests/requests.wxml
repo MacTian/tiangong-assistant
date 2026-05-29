@@ -1,42 +1,39 @@
 <view class="container">
-  <!-- 加载状态 -->
   <view class="loading" wx:if="{{loading}}">
     <view class="loading-spinner"></view>
     <text class="loading-text">加载中...</text>
   </view>
 
-  <!-- 空状态 -->
   <view class="empty" wx:elif="{{list.length === 0}}">
     <text class="empty-icon">✅</text>
     <text class="empty-text">暂无待审批请求</text>
     <button class="refresh-btn" bindtap="loadData">刷新</button>
   </view>
 
-  <!-- 请求列表 -->
   <view class="list" wx:else>
     <view class="list-header">
       <text class="list-count">共 {{list.length}} 条待审批</text>
       <text class="refresh-link" bindtap="loadData">刷新</text>
     </view>
 
-    <view class="card" wx:for="{{list}}" wx:key="requestCode">
+    <view class="card" wx:for="{{list}}" wx:key="RequestCode">
       <view class="card-header">
-        <text class="card-tag">{{item.softwareId || '未知软件'}}</text>
+        <text class="card-tag">{{item.SoftwareId || '未知软件'}}</text>
         <text class="card-time">{{item.requestedAtFormatted}}</text>
       </view>
 
       <view class="card-body">
         <view class="info-row">
           <text class="info-label">请求码</text>
-          <text class="info-value code">{{item.requestCode}}</text>
+          <text class="info-value code">{{item.RequestCode}}</text>
         </view>
         <view class="info-row">
           <text class="info-label">设备指纹</text>
-          <text class="info-value mono">{{item.deviceFingerprint}}</text>
+          <text class="info-value mono">{{item.DeviceFingerprint}}</text>
         </view>
-        <view class="info-row" wx:if="{{item.deviceInfo}}">
+        <view class="info-row" wx:if="{{item.DeviceInfo}}">
           <text class="info-label">设备信息</text>
-          <text class="info-value">{{item.deviceInfo}}</text>
+          <text class="info-value">{{item.DeviceInfo}}</text>
         </view>
       </view>
 
@@ -47,7 +44,6 @@
     </view>
   </view>
 
-  <!-- 批准弹窗 -->
   <view class="modal-mask" wx:if="{{showModal}}" bindtap="closeModal">
     <view class="modal-content" catchtap="">
       <view class="modal-header">

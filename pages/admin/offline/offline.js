@@ -97,14 +97,14 @@ Page({
     this.setData({ activating: true })
     try {
       const res = await licenseApi.offlineActivate({
-        deviceFingerprint: fingerprint.deviceFingerprint,
-        deviceInfo: fingerprint.deviceInfo,
-        softwareId: fingerprint.softwareId,
-        licenseType: licenseType,
-        durationDays: licenseType === 0 ? durationDays : null,
-        maxActivations: maxActivations,
-        offlineGraceDays: offlineGraceDays,
-        notes: notes
+        DeviceFingerprint: fingerprint.deviceFingerprint,
+        DeviceInfo: fingerprint.deviceInfo,
+        SoftwareId: fingerprint.softwareId,
+        LicenseType: licenseType,
+        DurationDays: licenseType === 0 ? durationDays : null,
+        MaxActivations: maxActivations,
+        OfflineGraceDays: offlineGraceDays,
+        Notes: notes
       })
 
       if (res.success !== false) {

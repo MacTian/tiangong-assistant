@@ -30,7 +30,7 @@ Page({
       const res = await licenseApi.getRequests()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        requestedAtFormatted: this.formatTime(item.requestedAt)
+        requestedAtFormatted: this.formatTime(item.RequestedAt)
       }))
       this.setData({ list, loading: false })
     } catch (err) {
@@ -88,11 +88,11 @@ Page({
     this.setData({ approving: true })
     try {
       await licenseApi.approveRequest({
-        requestCode: item.requestCode,
-        licenseType: licenseType,
-        durationDays: licenseType === 0 ? durationDays : null,
-        maxActivations: maxActivations,
-        notes: notes
+        RequestCode: item.RequestCode,
+        LicenseType: licenseType,
+        DurationDays: licenseType === 0 ? durationDays : null,
+        MaxActivations: maxActivations,
+        Notes: notes
       })
       wx.showToast({ title: '已批准', icon: 'success' })
       this.setData({ showModal: false })
@@ -111,11 +111,11 @@ Page({
 
     wx.showModal({
       title: '确认拒绝',
-      content: `确定拒绝请求 ${item.requestCode} 吗？`,
+      content: `确定拒绝请求 ${item.RequestCode} 吗？`,
       success: async (res) => {
         if (res.confirm) {
           try {
-            await licenseApi.rejectRequest(item.requestCode)
+            await licenseApi.rejectRequest(item.RequestCode)
             wx.showToast({ title: '已拒绝', icon: 'success' })
             this.loadData()
           } catch (err) {

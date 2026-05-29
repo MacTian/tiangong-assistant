@@ -21,14 +21,19 @@ function isLoggedIn() {
 function request(options) {
   return new Promise((resolve, reject) => {
     const token = getToken()
+    const header = {
+      'Content-Type': 'application/json'
+    }
+    // 携带认证 Cookie
+    if (token) {
+      header['Cookie'] = 'auth_token=' + token
+    }
+
     wx.request({
       url: BASE_URL + options.url,
       method: options.method || 'GET',
       data: options.data || {},
-      header: {
-        'Content-Type': 'application/json',
-        'Cookie': token ? `auth_token=${token}` : ''
-      },
+      header: header,
       success(res) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data)
@@ -36,7 +41,7 @@ function request(options) {
           clearToken()
           reject(new Error('登录已过期，请重新登录'))
         } else {
-          reject(new Error(res.data?.message || `请求失败: ${res.statusCode}`))
+          reject(new Error(res.data?.message || '请求失败: ' + res.statusCode))
         }
       },
       fail(err) {
@@ -46,12 +51,25 @@ function request(options) {
   })
 }
 
-// 管理员登录
+// 管理员登录（登录接口不需要 token）
 function login(username, password) {
-  return request({
-    url: '/api/admin/login',
-    method: 'POST',
-    data: { username, password }
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: BASE_URL + '/api/admin/login',
+      method: 'POST',
+      data: { Username: username, Password: password },
+      header: { 'Content-Type': 'application/json' },
+      success(res) {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(res.data)
+        } else {
+          reject(new Error(res.data?.message || '登录失败: ' + res.statusCode))
+        }
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
   })
 }
 
@@ -74,7 +92,7 @@ function rejectRequest(requestCode) {
   return request({
     url: '/api/admin/reject',
     method: 'POST',
-    data: { requestCode }
+    data: { RequestCode: requestCode }
   })
 }
 
@@ -88,7 +106,7 @@ function revokeLicense(code) {
   return request({
     url: '/api/admin/revoke',
     method: 'POST',
-    data: { code }
+    data: { Code: code }
   })
 }
 
@@ -116,7 +134,7 @@ function verifyLicenseFile(licenseFileBase64) {
   return request({
     url: '/api/admin/verify-license-file',
     method: 'POST',
-    data: { licenseFileBase64 }
+    data: { LicenseFileBase64: licenseFileBase64 }
   })
 }
 

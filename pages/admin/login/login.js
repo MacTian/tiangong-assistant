@@ -26,8 +26,9 @@ Page({
     this.setData({ loading: true, error: '' })
     try {
       const res = await licenseApi.login(username, password)
-      if (res.success !== false) {
-        licenseApi.setToken(res.token || res.data || 'authenticated')
+      // 服务器返回格式: { success: true, data: { token: "xxx", username: "admin" } }
+      if (res.success && res.data && res.data.token) {
+        licenseApi.setToken(res.data.token)
         wx.showToast({ title: '登录成功', icon: 'success' })
         setTimeout(() => {
           wx.navigateBack()

@@ -16,24 +16,24 @@
       <text class="refresh-link" bindtap="loadData">刷新</text>
     </view>
 
-    <view class="card" wx:for="{{list}}" wx:key="code">
+    <view class="card" wx:for="{{list}}" wx:key="Code">
       <view class="card-header">
-        <text class="card-code">{{item.code}}</text>
-        <text class="card-status {{item.status === 0 ? 'active' : item.status === 1 ? 'revoked' : 'expired'}}">
-          {{item.status === 0 ? '有效' : item.status === 1 ? '已吊销' : '已过期'}}
+        <text class="card-code">{{item.Code}}</text>
+        <text class="card-status {{item.Status === 0 ? 'active' : item.Status === 1 ? 'revoked' : 'expired'}}">
+          {{item.Status === 0 ? '有效' : item.Status === 1 ? '已吊销' : '已过期'}}
         </text>
       </view>
 
       <view class="card-body">
         <view class="info-row">
           <text class="info-label">类型</text>
-          <text class="info-value">{{item.type === 0 ? '临时授权' : '永久授权'}}</text>
+          <text class="info-value">{{item.Type === 0 ? '临时授权' : '永久授权'}}</text>
         </view>
-        <view class="info-row" wx:if="{{item.type === 0}}">
+        <view class="info-row" wx:if="{{item.Type === 0}}">
           <text class="info-label">有效期</text>
-          <text class="info-value">{{item.durationDays}} 天</text>
+          <text class="info-value">{{item.DurationDays}} 天</text>
         </view>
-        <view class="info-row" wx:if="{{item.expiresAt}}">
+        <view class="info-row" wx:if="{{item.ExpiresAt}}">
           <text class="info-label">到期时间</text>
           <text class="info-value">{{item.expiresAtFormatted}}</text>
         </view>
@@ -43,11 +43,11 @@
         </view>
         <view class="info-row">
           <text class="info-label">激活设备</text>
-          <text class="info-value">{{item.activationCount || 0}} / {{item.maxActivations}}</text>
+          <text class="info-value">{{item.ActivationCount || 0}} / {{item.MaxActivations}}</text>
         </view>
       </view>
 
-      <view class="card-actions" wx:if="{{item.status === 0}}">
+      <view class="card-actions" wx:if="{{item.Status === 0}}">
         <button class="btn-revoke" bindtap="onRevoke" data-index="{{index}}">吊销授权</button>
       </view>
     </view>

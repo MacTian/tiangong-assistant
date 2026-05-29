@@ -16,22 +16,22 @@
       <text class="refresh-link" bindtap="loadData">刷新</text>
     </view>
 
-    <view class="card" wx:for="{{list}}" wx:key="id">
+    <view class="card" wx:for="{{list}}" wx:key="Id">
       <view class="card-header">
-        <text class="card-code">{{item.licenseCode || 'N/A'}}</text>
+        <text class="card-code">{{item.LicenseCode || 'N/A'}}</text>
         <text class="card-time">{{item.activatedAtFormatted}}</text>
       </view>
 
       <view class="card-body">
         <view class="info-row">
           <text class="info-label">设备指纹</text>
-          <text class="info-value mono">{{item.deviceFingerprint}}</text>
+          <text class="info-value mono">{{item.DeviceFingerprint}}</text>
         </view>
         <view class="info-row">
           <text class="info-label">IP 地址</text>
-          <text class="info-value">{{item.ipAddress || 'N/A'}}</text>
+          <text class="info-value">{{item.IpAddress || 'N/A'}}</text>
         </view>
-        <view class="info-row" wx:if="{{item.lastVerifiedAt}}">
+        <view class="info-row" wx:if="{{item.LastVerifiedAt}}">
           <text class="info-label">最后验证</text>
           <text class="info-value">{{item.lastVerifiedAtFormatted}}</text>
         </view>

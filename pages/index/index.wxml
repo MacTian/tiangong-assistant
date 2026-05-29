@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 顶部装饰 -->
   <view class="header">
-    <text class="app-title">天工金句</text>
+    <text class="app-title">天工小助手</text>
     <text class="app-subtitle">每日一言，启迪心智</text>
   </view>
 
