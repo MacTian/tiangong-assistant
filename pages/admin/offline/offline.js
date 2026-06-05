@@ -108,8 +108,11 @@ Page({
         Notes: notes
       })
 
+      console.log('offlineActivate response:', JSON.stringify(res).substring(0, 500))
       if (res.success !== false) {
         const result = res.data || res
+        console.log('result keys:', Object.keys(result))
+        console.log('licenseFileBase64:', result.licenseFileBase64 ? result.licenseFileBase64.substring(0, 50) : 'EMPTY')
         const code = result.licenseCode || 'offline'
         this.setData({
           step: 3,
@@ -119,7 +122,7 @@ Page({
             expiresAt: result.expiresAt,
             expiresAtFormatted: result.expiresAt ? this.formatTime(result.expiresAt) : ''
           },
-          licenseFileBase64: result.licenseFileBase64 || result.licenseFile || '',
+          licenseFileBase64: result.licenseFileBase64 || result.LicenseFileBase64 || result.licenseFile || '',
           licenseFileName: `license-${code}.json`
         })
       } else {
@@ -140,7 +143,11 @@ Page({
 
   downloadLicenseFile() {
     const { licenseFileBase64, licenseResult } = this.data
-    if (!licenseFileBase64) return
+    console.log('downloadLicenseFile called, licenseFileBase64 length:', licenseFileBase64 ? licenseFileBase64.length : 0)
+    if (!licenseFileBase64) {
+      wx.showToast({ title: '无授权文件数据', icon: 'none' })
+      return
+    }
 
     const code = licenseResult.licenseCode || 'offline'
     const fileName = `license-${code}.json`
