@@ -16,8 +16,8 @@ Page({
       const res = await licenseApi.getLicenses()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        createdAtFormatted: this.formatTime(item.CreatedAt),
-        expiresAtFormatted: item.ExpiresAt ? this.formatTime(item.ExpiresAt) : '永久'
+        createdAtFormatted: this.formatTime(item.createdAt),
+        expiresAtFormatted: item.expiresAt ? this.formatTime(item.expiresAt) : '永久'
       }))
       this.setData({ list, loading: false })
     } catch (err) {

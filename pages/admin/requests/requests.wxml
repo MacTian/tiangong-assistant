@@ -16,24 +16,24 @@
       <text class="refresh-link" bindtap="loadData">刷新</text>
     </view>
 
-    <view class="card" wx:for="{{list}}" wx:key="RequestCode">
+    <view class="card" wx:for="{{list}}" wx:key="requestCode">
       <view class="card-header">
-        <text class="card-tag">{{item.SoftwareId || '未知软件'}}</text>
+        <text class="card-tag">{{item.softwareId || '未知软件'}}</text>
         <text class="card-time">{{item.requestedAtFormatted}}</text>
       </view>
 
       <view class="card-body">
         <view class="info-row full-width">
           <text class="info-label">请求码</text>
-          <text class="info-value code">{{item.RequestCode}}</text>
+          <text class="info-value code">{{item.requestCode}}</text>
         </view>
         <view class="info-row full-width">
           <text class="info-label">设备指纹</text>
-          <text class="info-value mono">{{item.DeviceFingerprint}}</text>
+          <text class="info-value mono">{{item.deviceFingerprint}}</text>
         </view>
-        <view class="info-row" wx:if="{{item.DeviceInfo}}">
+        <view class="info-row" wx:if="{{item.deviceInfo}}">
           <text class="info-label">设备信息</text>
-          <text class="info-value">{{item.DeviceInfo}}</text>
+          <text class="info-value">{{item.deviceInfo}}</text>
         </view>
       </view>
 

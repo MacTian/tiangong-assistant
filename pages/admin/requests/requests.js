@@ -30,7 +30,7 @@ Page({
       const res = await licenseApi.getRequests()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        requestedAtFormatted: this.formatTime(item.RequestedAt)
+        requestedAtFormatted: this.formatTime(item.requestedAt)
       }))
       this.setData({ list, loading: false })
     } catch (err) {

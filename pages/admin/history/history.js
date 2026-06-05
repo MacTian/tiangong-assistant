@@ -19,7 +19,7 @@ Page({
       const res = await licenseApi.getHistory()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        requestedAtFormatted: this.formatTime(item.RequestedAt)
+        requestedAtFormatted: this.formatTime(item.requestedAt)
       }))
       this.setData({ list, loading: false })
       this.applyFilter()
@@ -47,7 +47,7 @@ Page({
 
     let filtered = list
     if (filter !== 'all') {
-      filtered = list.filter(item => item.Status === statusMap[filter])
+      filtered = list.filter(item => item.status === statusMap[filter])
     }
 
     this.setData({

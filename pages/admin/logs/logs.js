@@ -16,8 +16,8 @@ Page({
       const res = await licenseApi.getLogs()
       const list = (Array.isArray(res) ? res : (res.data || [])).map(item => ({
         ...item,
-        activatedAtFormatted: this.formatTime(item.ActivatedAt),
-        lastVerifiedAtFormatted: item.LastVerifiedAt ? this.formatTime(item.LastVerifiedAt) : ''
+        activatedAtFormatted: this.formatTime(item.activatedAt),
+        lastVerifiedAtFormatted: item.lastVerifiedAt ? this.formatTime(item.lastVerifiedAt) : ''
       }))
       this.setData({ list, loading: false })
     } catch (err) {
