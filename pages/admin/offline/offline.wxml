@@ -130,7 +130,8 @@
           <text class="file-info-label">文件名</text>
           <text class="file-info-value">{{licenseFileName}}</text>
         </view>
-        <button class="download-btn" bindtap="downloadLicenseFile">打开许可证文件</button>
+        <textarea class="license-json" value="{{licenseFileContent}}" auto-height="true" disabled="true" wx:if="{{licenseFileContent}}" />
+        <button class="download-btn" bindtap="downloadLicenseFile">复制许可证文件</button>
       </view>
     </view>
 
