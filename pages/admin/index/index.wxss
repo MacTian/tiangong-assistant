@@ -99,15 +99,16 @@
 .menu-grid {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 24rpx;
-  gap: 20rpx;
+  padding: 0 20rpx;
 }
 
 .menu-item {
-  width: calc(50% - 10rpx);
+  width: 48%;
   background: #ffffff;
   border-radius: 20rpx;
   padding: 32rpx 24rpx;
+  margin: 1%;
+  box-sizing: border-box;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden;

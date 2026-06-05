@@ -115,7 +115,6 @@
   padding: 20rpx 24rpx;
   display: flex;
   flex-wrap: wrap;
-  gap: 4rpx 0;
 }
 
 .info-row {
@@ -124,10 +123,12 @@
   align-items: baseline;
   margin-bottom: 10rpx;
   box-sizing: border-box;
+  padding-right: 10rpx;
 }
 
 .info-row.full-width {
   width: 100%;
+  padding-right: 0;
 }
 
 .info-label {
