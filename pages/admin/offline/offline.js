@@ -13,6 +13,7 @@ Page({
     activating: false,
     licenseResult: null,
     licenseFileBase64: '',
+    licenseFileName: '',
     errorMsg: '',
     durationOptions: [
       { label: '1天', value: 1 },
@@ -109,15 +110,17 @@ Page({
 
       if (res.success !== false) {
         const result = res.data || res
+        const code = result.licenseCode || 'offline'
         this.setData({
           step: 3,
           licenseResult: {
-            licenseCode: result.licenseCode,
+            licenseCode: code,
             type: result.type || licenseType,
             expiresAt: result.expiresAt,
             expiresAtFormatted: result.expiresAt ? this.formatTime(result.expiresAt) : ''
           },
-          licenseFileBase64: result.licenseFileBase64 || result.licenseFile || ''
+          licenseFileBase64: result.licenseFileBase64 || result.licenseFile || '',
+          licenseFileName: `license-${code}.lic`
         })
       } else {
         this.setData({ step: 3, errorMsg: res.message || '生成失败' })
@@ -135,19 +138,39 @@ Page({
     return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`
   },
 
-  copyLicenseFile() {
-    wx.setClipboardData({
-      data: this.data.licenseFileBase64,
-      success() {
-        wx.showToast({ title: '已复制', icon: 'success' })
-      }
-    })
-  },
+  downloadLicenseFile() {
+    const { licenseFileBase64, licenseResult } = this.data
+    if (!licenseFileBase64) return
 
-  onShareAppMessage() {
-    return {
-      title: '离线授权文件',
-      path: '/pages/admin/offline/offline'
+    const fileName = `license-${licenseResult.licenseCode || 'offline'}.lic`
+    const fs = wx.getFileSystemManager()
+    const filePath = `${wx.env.USER_DATA_PATH}/${fileName}`
+
+    try {
+      fs.writeFile({
+        filePath,
+        data: licenseFileBase64,
+        encoding: 'utf8',
+        success: () => {
+          wx.shareFileToMessage({
+            filePath,
+            success: () => {
+              wx.showToast({ title: '文件已发送', icon: 'success' })
+            },
+            fail: (err) => {
+              // 用户取消分享不算失败
+              if (err.errMsg && err.errMsg.indexOf('cancel') === -1) {
+                wx.showToast({ title: '发送失败', icon: 'none' })
+              }
+            }
+          })
+        },
+        fail: () => {
+          wx.showToast({ title: '文件写入失败', icon: 'none' })
+        }
+      })
+    } catch (e) {
+      wx.showToast({ title: '下载失败', icon: 'none' })
     }
   },
 
@@ -163,6 +186,7 @@ Page({
       notes: '',
       licenseResult: null,
       licenseFileBase64: '',
+      licenseFileName: '',
       errorMsg: ''
     })
   }

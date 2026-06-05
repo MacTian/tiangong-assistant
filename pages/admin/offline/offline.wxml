@@ -126,9 +126,11 @@
 
       <view class="license-file-section">
         <text class="section-title">授权文件</text>
-        <textarea class="license-text" value="{{licenseFileBase64}}" auto-height="true" disabled="true" />
-        <button class="copy-btn" bindtap="copyLicenseFile">复制授权文件</button>
-        <button class="share-btn" open-type="share">分享授权文件</button>
+        <view class="file-info-row">
+          <text class="file-info-label">文件名</text>
+          <text class="file-info-value">{{licenseFileName}}</text>
+        </view>
+        <button class="download-btn" bindtap="downloadLicenseFile">下载许可证文件</button>
       </view>
     </view>
 
