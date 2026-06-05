@@ -30,7 +30,7 @@
       </view>
 
       <view class="card-body">
-        <view class="info-row">
+        <view class="info-row full-width">
           <text class="info-label">请求码</text>
           <text class="info-value code">{{item.RequestCode}}</text>
         </view>
@@ -38,7 +38,7 @@
           <text class="info-label">软件ID</text>
           <text class="info-value">{{item.SoftwareId}}</text>
         </view>
-        <view class="info-row">
+        <view class="info-row full-width">
           <text class="info-label">设备指纹</text>
           <text class="info-value mono">{{item.DeviceFingerprint}}</text>
         </view>

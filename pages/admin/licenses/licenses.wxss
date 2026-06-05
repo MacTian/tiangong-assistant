@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: #f0f2f5;
   padding: 20rpx;
   padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
 }
@@ -81,7 +81,8 @@
   border-radius: 16rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  border-left: 6rpx solid #3498db;
 }
 
 .card-header {
@@ -89,8 +90,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 24rpx;
-  background: #f8f9fa;
-  border-bottom: 1rpx solid #ecf0f1;
+  background: #f0f7fd;
+  border-bottom: 1rpx solid #e8f0f8;
 }
 
 .card-code {
@@ -123,24 +124,37 @@
 
 .card-body {
   padding: 20rpx 24rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rpx 0;
 }
 
 .info-row {
+  width: 50%;
   display: flex;
+  align-items: baseline;
   margin-bottom: 10rpx;
+  box-sizing: border-box;
+}
+
+.info-row.full-width {
+  width: 100%;
 }
 
 .info-label {
-  font-size: 24rpx;
+  font-size: 22rpx;
   color: #95a5a6;
-  width: 140rpx;
+  width: 120rpx;
   flex-shrink: 0;
 }
 
 .info-value {
-  font-size: 24rpx;
+  font-size: 22rpx;
   color: #2c3e50;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-actions {

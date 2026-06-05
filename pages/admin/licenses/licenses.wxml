@@ -27,22 +27,22 @@
       <view class="card-body">
         <view class="info-row">
           <text class="info-label">类型</text>
-          <text class="info-value">{{item.Type === 0 ? '临时授权' : '永久授权'}}</text>
+          <text class="info-value">{{item.Type === 0 ? '临时' : '永久'}}</text>
         </view>
         <view class="info-row" wx:if="{{item.Type === 0}}">
           <text class="info-label">有效期</text>
           <text class="info-value">{{item.DurationDays}} 天</text>
         </view>
         <view class="info-row" wx:if="{{item.ExpiresAt}}">
-          <text class="info-label">到期时间</text>
+          <text class="info-label">到期</text>
           <text class="info-value">{{item.expiresAtFormatted}}</text>
         </view>
         <view class="info-row">
-          <text class="info-label">创建时间</text>
+          <text class="info-label">创建</text>
           <text class="info-value">{{item.createdAtFormatted}}</text>
         </view>
         <view class="info-row">
-          <text class="info-label">激活设备</text>
+          <text class="info-label">设备</text>
           <text class="info-value">{{item.ActivationCount || 0}} / {{item.MaxActivations}}</text>
         </view>
       </view>

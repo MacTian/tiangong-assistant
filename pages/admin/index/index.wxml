@@ -15,15 +15,15 @@
 
     <view class="stats-bar">
       <view class="stat-item">
-        <text class="stat-num">{{stats.pending || 0}}</text>
+        <text class="stat-num pending">{{stats.pending || 0}}</text>
         <text class="stat-label">待审批</text>
       </view>
       <view class="stat-item">
-        <text class="stat-num">{{stats.active || 0}}</text>
+        <text class="stat-num active">{{stats.active || 0}}</text>
         <text class="stat-label">已激活</text>
       </view>
       <view class="stat-item">
-        <text class="stat-num">{{stats.revoked || 0}}</text>
+        <text class="stat-num revoked">{{stats.revoked || 0}}</text>
         <text class="stat-label">已吊销</text>
       </view>
     </view>
