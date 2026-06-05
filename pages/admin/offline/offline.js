@@ -14,7 +14,6 @@ Page({
     licenseResult: null,
     licenseFileBase64: '',
     licenseFileName: '',
-    licenseFileContent: '',
     errorMsg: '',
     durationOptions: [
       { label: '1天', value: 1 },
@@ -114,18 +113,6 @@ Page({
         const code = result.licenseCode || 'offline'
         const base64 = result.licenseFileBase64 || result.LicenseFileBase64 || result.licenseFile || ''
 
-        // 预解码 JSON 内容用于显示
-        let fileContent = ''
-        if (base64) {
-          try {
-            const bytes = wx.base64ToArrayBuffer(base64)
-            const jsonStr = String.fromCharCode.apply(null, new Uint8Array(bytes))
-            fileContent = JSON.stringify(JSON.parse(jsonStr), null, 2)
-          } catch (e) {
-            fileContent = '(解码失败)'
-          }
-        }
-
         this.setData({
           step: 3,
           licenseResult: {
@@ -135,8 +122,7 @@ Page({
             expiresAtFormatted: result.expiresAt ? this.formatTime(result.expiresAt) : ''
           },
           licenseFileBase64: base64,
-          licenseFileName: `license-${code}.json`,
-          licenseFileContent: fileContent
+          licenseFileName: `license-${code}.json`
         })
       } else {
         this.setData({ step: 3, errorMsg: res.message || '生成失败' })
@@ -162,36 +148,41 @@ Page({
     }
 
     const code = licenseResult.licenseCode || 'offline'
+    const fileName = `license-${code}.json`
+    const fs = wx.getFileSystemManager()
+    const tempPath = `${wx.env.USER_DATA_PATH}/${fileName}`
 
     try {
-      // base64 解码为 JSON 字符串
-      const bytes = wx.base64ToArrayBuffer(licenseFileBase64)
-      const jsonStr = String.fromCharCode.apply(null, new Uint8Array(bytes))
-
-      // 格式化 JSON
-      let prettyJson
-      try {
-        prettyJson = JSON.stringify(JSON.parse(jsonStr), null, 2)
-      } catch (e) {
-        prettyJson = jsonStr
-      }
-
-      this.setData({ licenseFileContent: prettyJson })
-
-      wx.setClipboardData({
-        data: prettyJson,
-        success() {
-          wx.showModal({
-            title: '已复制到剪贴板',
-            content: `文件名: license-${code}.json\n\n请新建文件粘贴内容并保存为 .json 文件，即可导入客户端激活。`,
-            showCancel: false,
-            confirmText: '知道了'
+      fs.writeFile({
+        filePath: tempPath,
+        data: licenseFileBase64,
+        encoding: 'base64',
+        success: () => {
+          wx.saveFileToDisk({
+            filePath: tempPath,
+            success: () => {
+              wx.showToast({ title: '文件已保存', icon: 'success' })
+            },
+            fail: (err) => {
+              if (err.errMsg && err.errMsg.indexOf('cancel') !== -1) return
+              // 降级：用 openDocument
+              wx.openDocument({
+                filePath: tempPath,
+                showMenu: true,
+                fileType: 'json',
+                fail: () => {
+                  wx.showToast({ title: '保存失败', icon: 'none' })
+                }
+              })
+            }
           })
+        },
+        fail: () => {
+          wx.showToast({ title: '文件写入失败', icon: 'none' })
         }
       })
     } catch (e) {
-      console.log('decode error:', e)
-      wx.showToast({ title: '文件处理失败', icon: 'none' })
+      wx.showToast({ title: '下载失败', icon: 'none' })
     }
   },
 
@@ -208,7 +199,6 @@ Page({
       licenseResult: null,
       licenseFileBase64: '',
       licenseFileName: '',
-      licenseFileContent: '',
       errorMsg: ''
     })
   }

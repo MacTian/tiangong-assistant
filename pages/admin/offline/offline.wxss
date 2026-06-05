@@ -311,22 +311,6 @@
   font-family: monospace;
 }
 
-.license-json {
-  width: 100%;
-  background: #f8f9fa;
-  border: 2rpx solid #ecf0f1;
-  border-radius: 8rpx;
-  padding: 16rpx;
-  font-size: 20rpx;
-  font-family: monospace;
-  color: #555;
-  max-height: 300rpx;
-  overflow-y: auto;
-  box-sizing: border-box;
-  word-break: break-all;
-  margin-bottom: 20rpx;
-}
-
 .download-btn {
   width: 100%;
   background: #27ae60;
