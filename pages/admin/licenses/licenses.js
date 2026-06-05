@@ -39,11 +39,11 @@ Page({
 
     wx.showModal({
       title: '确认吊销',
-      content: `确定吊销授权码 ${item.Code} 吗？吊销后该授权码将无法使用。`,
+      content: `确定吊销授权码 ${item.code} 吗？吊销后该授权码将无法使用。`,
       success: async (res) => {
         if (res.confirm) {
           try {
-            await licenseApi.revokeLicense(item.Code)
+            await licenseApi.revokeLicense(item.code)
             wx.showToast({ title: '已吊销', icon: 'success' })
             this.loadData()
           } catch (err) {

@@ -23,8 +23,8 @@ Page({
 
       const pending = Array.isArray(requests) ? requests.length : (requests.data?.length || 0)
       const licenseList = Array.isArray(licenses) ? licenses : (licenses.data || [])
-      const active = licenseList.filter(l => l.Status === 0).length
-      const revoked = licenseList.filter(l => l.Status === 1).length
+      const active = licenseList.filter(l => l.status === 0).length
+      const revoked = licenseList.filter(l => l.status === 1).length
 
       this.setData({ stats: { pending, active, revoked } })
     } catch (err) {

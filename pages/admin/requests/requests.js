@@ -88,7 +88,7 @@ Page({
     this.setData({ approving: true })
     try {
       await licenseApi.approveRequest({
-        RequestCode: item.RequestCode,
+        RequestCode: item.requestCode,
         LicenseType: licenseType,
         DurationDays: licenseType === 0 ? durationDays : null,
         MaxActivations: maxActivations,
@@ -111,11 +111,11 @@ Page({
 
     wx.showModal({
       title: '确认拒绝',
-      content: `确定拒绝请求 ${item.RequestCode} 吗？`,
+      content: `确定拒绝请求 ${item.requestCode} 吗？`,
       success: async (res) => {
         if (res.confirm) {
           try {
-            await licenseApi.rejectRequest(item.RequestCode)
+            await licenseApi.rejectRequest(item.requestCode)
             wx.showToast({ title: '已拒绝', icon: 'success' })
             this.loadData()
           } catch (err) {
