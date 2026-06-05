@@ -108,11 +108,8 @@ Page({
         Notes: notes
       })
 
-      console.log('offlineActivate response:', JSON.stringify(res).substring(0, 500))
       if (res.success !== false) {
         const result = res.data || res
-        console.log('result keys:', Object.keys(result))
-        console.log('licenseFileBase64:', result.licenseFileBase64 ? result.licenseFileBase64.substring(0, 50) : 'EMPTY')
         const code = result.licenseCode || 'offline'
         this.setData({
           step: 3,
@@ -143,7 +140,6 @@ Page({
 
   downloadLicenseFile() {
     const { licenseFileBase64, licenseResult } = this.data
-    console.log('downloadLicenseFile called, licenseFileBase64 length:', licenseFileBase64 ? licenseFileBase64.length : 0)
     if (!licenseFileBase64) {
       wx.showToast({ title: '无授权文件数据', icon: 'none' })
       return
@@ -161,19 +157,20 @@ Page({
         data: licenseFileBase64,
         encoding: 'base64',
         success: () => {
-          wx.shareFileToMessage({
+          wx.openDocument({
             filePath,
+            showMenu: true,
             success: () => {
-              wx.showToast({ title: '文件已发送', icon: 'success' })
+              wx.showToast({ title: '文件已打开', icon: 'success' })
             },
             fail: (err) => {
-              if (err.errMsg && err.errMsg.indexOf('cancel') === -1) {
-                wx.showToast({ title: '发送失败', icon: 'none' })
-              }
+              console.log('openDocument fail:', err)
+              wx.showToast({ title: '打开失败，请在聊天中发送文件', icon: 'none' })
             }
           })
         },
-        fail: () => {
+        fail: (err) => {
+          console.log('writeFile fail:', err)
           wx.showToast({ title: '文件写入失败', icon: 'none' })
         }
       })
