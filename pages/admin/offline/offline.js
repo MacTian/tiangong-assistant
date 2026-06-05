@@ -120,7 +120,7 @@ Page({
             expiresAtFormatted: result.expiresAt ? this.formatTime(result.expiresAt) : ''
           },
           licenseFileBase64: result.licenseFileBase64 || result.licenseFile || '',
-          licenseFileName: `license-${code}.lic`
+          licenseFileName: `license-${code}.json`
         })
       } else {
         this.setData({ step: 3, errorMsg: res.message || '生成失败' })
@@ -142,15 +142,17 @@ Page({
     const { licenseFileBase64, licenseResult } = this.data
     if (!licenseFileBase64) return
 
-    const fileName = `license-${licenseResult.licenseCode || 'offline'}.lic`
+    const code = licenseResult.licenseCode || 'offline'
+    const fileName = `license-${code}.json`
     const fs = wx.getFileSystemManager()
     const filePath = `${wx.env.USER_DATA_PATH}/${fileName}`
 
     try {
+      // base64 解码写入文件
       fs.writeFile({
         filePath,
         data: licenseFileBase64,
-        encoding: 'utf8',
+        encoding: 'base64',
         success: () => {
           wx.shareFileToMessage({
             filePath,
@@ -158,7 +160,6 @@ Page({
               wx.showToast({ title: '文件已发送', icon: 'success' })
             },
             fail: (err) => {
-              // 用户取消分享不算失败
               if (err.errMsg && err.errMsg.indexOf('cancel') === -1) {
                 wx.showToast({ title: '发送失败', icon: 'none' })
               }
@@ -170,7 +171,7 @@ Page({
         }
       })
     } catch (e) {
-      wx.showToast({ title: '下载失败', icon: 'none' })
+      wx.showToast({ title: '文件处理失败', icon: 'none' })
     }
   },
 
