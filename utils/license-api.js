@@ -45,7 +45,7 @@ function request(options) {
         }
       },
       fail(err) {
-        reject(err)
+        reject(new Error(err.errMsg || '网络错误'))
       }
     })
   })
@@ -67,7 +67,7 @@ function login(username, password) {
         }
       },
       fail(err) {
-        reject(err)
+        reject(new Error(err.errMsg || '网络错误'))
       }
     })
   })

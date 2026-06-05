@@ -35,8 +35,9 @@ Page({
       this.setData({ list, loading: false })
     } catch (err) {
       this.setData({ loading: false })
-      wx.showToast({ title: err.message, icon: 'none' })
-      if (err.message.includes('登录')) {
+      const msg = err.message || '网络错误'
+      wx.showToast({ title: msg, icon: 'none' })
+      if (msg.includes('登录')) {
         setTimeout(() => wx.navigateTo({ url: '/pages/admin/login/login' }), 1500)
       }
     }
@@ -87,13 +88,17 @@ Page({
 
     this.setData({ approving: true })
     try {
-      await licenseApi.approveRequest({
+      const res = await licenseApi.approveRequest({
         RequestCode: item.requestCode,
         LicenseType: licenseType,
         DurationDays: licenseType === 0 ? durationDays : null,
         MaxActivations: maxActivations,
         Notes: notes
       })
+      if (res.success === false) {
+        wx.showToast({ title: res.message || '批准失败', icon: 'none' })
+        return
+      }
       wx.showToast({ title: '已批准', icon: 'success' })
       this.setData({ showModal: false })
       this.loadData()

@@ -48,17 +48,17 @@ Page({
 
   // 分享
   onShare() {
-    const { quote } = this.data
     wx.showShareMenu({
-      withShareTicket: true
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
     })
   },
 
   // 分享给朋友
   onShareAppMessage() {
-    const { quote } = this.data
+    const text = this.data.quote.hitokoto || '每日一言，启迪心智'
     return {
-      title: `「${quote.hitokoto.substring(0, 20)}...」— 天工小助手`,
+      title: `「${text.substring(0, 20)}${text.length > 20 ? '...' : ''}」— 天工小助手`,
       path: '/pages/index/index',
       imageUrl: ''
     }
@@ -66,9 +66,9 @@ Page({
 
   // 分享到朋友圈
   onShareTimeline() {
-    const { quote } = this.data
+    const text = this.data.quote.hitokoto || '每日一言，启迪心智'
     return {
-      title: `「${quote.hitokoto}」— 天工小助手`,
+      title: `「${text}」— 天工小助手`,
       query: ''
     }
   }
