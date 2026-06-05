@@ -8,7 +8,6 @@
 .list {
   padding: 0;
 }
-}
 
 .loading {
   display: flex;
