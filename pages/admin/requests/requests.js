@@ -89,10 +89,11 @@ Page({
     this.setData({ approving: true })
     try {
       const res = await licenseApi.approveRequest({
-        RequestCode: item.requestCode,
+        RequestId: item.id,
         LicenseType: licenseType,
         DurationDays: licenseType === 0 ? durationDays : null,
         MaxActivations: maxActivations,
+        OfflineGraceDays: 7,
         Notes: notes
       })
       if (res.success === false) {
