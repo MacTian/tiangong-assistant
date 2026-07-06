@@ -120,35 +120,41 @@ function getFundNavHistory(fundCode, days) {
  * @returns {Object} 运行时数据
  */
 function mergeFundData(apiItem, holding) {
-  const dwjz = parseFloat(apiItem.dwjz) || 0
-  const gsz = parseFloat(apiItem.gsz) || 0
+  const rawDwjz = apiItem.dwjz === '--' || apiItem.dwjz === '' ? null : apiItem.dwjz
+  const rawGsz = apiItem.gsz === '--' || apiItem.gsz === '' ? null : apiItem.gsz
+  const dwjz = parseFloat(rawDwjz) || 0
+  const gsz = parseFloat(rawGsz) || 0
   const gszzl = parseFloat(apiItem.gszzl) || 0
   const num = holding.num || 0
   const cost = holding.cost || 0
-  const hasReplace = apiItem.jzrq && apiItem.gztime &&
-    apiItem.jzrq === apiItem.gztime.substr(0, 10)
 
-  const currentNav = hasReplace ? dwjz : (gsz || dwjz)
+  // hasReplace: 净值已更新且净值有效
+  const hasReplace = apiItem.jzrq && apiItem.gztime &&
+    apiItem.jzrq === apiItem.gztime.substr(0, 10) && dwjz > 0
+
+  // 当前有效净值：优先用估值，无估值时用净值
+  const currentNav = gsz > 0 ? gsz : dwjz
+  const displayNav = hasReplace ? dwjz : (gsz || dwjz)
   const amount = Number((dwjz * num).toFixed(2))
-  const costGains = cost > 0 ? Number(((currentNav - cost) * num).toFixed(2)) : 0
-  const costGainsRate = cost > 0 ? Number(((currentNav - cost) / cost * 100).toFixed(2)) : 0
+  const costGains = cost > 0 && currentNav > 0 ? Number(((currentNav - cost) * num).toFixed(2)) : 0
+  const costGainsRate = cost > 0 && currentNav > 0 ? Number(((currentNav - cost) / cost * 100).toFixed(2)) : 0
 
   let gains = 0
-  if (hasReplace) {
-    if (gszzl !== -100 && gszzl !== 0) {
-      const yesterdayNav = dwjz / (1 + gszzl * 0.01)
-      gains = Number(((dwjz - yesterdayNav) * num).toFixed(2))
-    }
-  } else {
+  if (gsz > 0 && dwjz > 0 && !hasReplace) {
+    // 交易时段：估值 - 净值
     gains = Number(((gsz - dwjz) * num).toFixed(2))
+  } else if (hasReplace && gszzl !== 0 && gszzl !== -100) {
+    // 收盘后：反推昨日净值
+    const yesterdayNav = dwjz / (1 + gszzl * 0.01)
+    gains = Number(((dwjz - yesterdayNav) * num).toFixed(2))
   }
 
   return {
     fundcode: apiItem.fundcode || holding.code,
     name: apiItem.name || holding.name,
     dwjz,
-    gsz: hasReplace ? dwjz : gsz,
-    gszzl: hasReplace ? gszzl : gszzl,
+    gsz: displayNav,
+    gszzl,
     jzrq: apiItem.jzrq || '',
     gztime: apiItem.gztime || '',
     hasReplace,
