@@ -2,29 +2,17 @@
 // 东方财富基金 API 封装
 
 /**
- * 获取单只基金估值数据（JSONP 接口）
+ * 获取单只基金估值数据
  * @param {string} fundCode 基金代码
  * @returns {Promise<Object>} 基金数据
  */
 function fetchSingleFund(fundCode) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     wx.request({
       url: `https://fundgz.1234567.com.cn/js/${fundCode}.js?rt=${Date.now()}`,
       success(res) {
         if (res.statusCode === 200 && res.data) {
-          try {
-            const text = typeof res.data === 'string' ? res.data : ''
-            // 解析 JSONP: jsonpgz({...})
-            const match = text.match(/jsonpgz\((.*)\)/s)
-            if (match) {
-              const data = JSON.parse(match[1])
-              resolve(data)
-            } else {
-              resolve(null)
-            }
-          } catch (e) {
-            resolve(null)
-          }
+          resolve(res.data)
         } else {
           resolve(null)
         }
@@ -51,7 +39,7 @@ function getFundData(fundCodes) {
 /**
  * 搜索基金
  * @param {string} keyword 关键词（代码/名称/拼音）
- * @returns {Promise<Array>} 搜索结果 [{code, name, type}]
+ * @returns {Promise<Array>} 搜索结果 [{code, name, type, sectors}]
  */
 function searchFund(keyword) {
   return new Promise((resolve, reject) => {
@@ -85,7 +73,7 @@ function searchFund(keyword) {
 /**
  * 获取基金历史净值
  * @param {string} fundCode 基金代码
- * @param {number} days 天数（7 或 30）
+ * @param {number} days 天数
  * @returns {Promise<Array>} [{date, nav}]
  */
 function getFundNavHistory(fundCode, days) {
