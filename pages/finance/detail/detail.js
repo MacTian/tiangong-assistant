@@ -34,10 +34,34 @@ Page({
       if (apiData && apiData.length > 0) {
         const fund = mergeFundData(apiData[0], holding)
         this.setData({ fund, loading: false })
+      } else {
+        // API 无数据时，用持仓数据填充
+        this.setData({
+          fund: {
+            fundcode: holding.code,
+            name: holding.name,
+            dwjz: 0, gsz: 0, gszzl: 0,
+            jzrq: '', gztime: '', hasReplace: false,
+            num: holding.num, cost: holding.cost,
+            amount: 0, gains: 0, costGains: 0, costGainsRate: 0
+          },
+          loading: false
+        })
       }
     } catch (err) {
       console.error('加载基金详情失败:', err)
-      this.setData({ loading: false })
+      // API 失败时，用持仓数据填充
+      this.setData({
+        fund: {
+          fundcode: holding.code,
+          name: holding.name,
+          dwjz: 0, gsz: 0, gszzl: 0,
+          jzrq: '', gztime: '', hasReplace: false,
+          num: holding.num, cost: holding.cost,
+          amount: 0, gains: 0, costGains: 0, costGainsRate: 0
+        },
+        loading: false
+      })
     }
 
     this.loadChart()
