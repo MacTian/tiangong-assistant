@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="fund-info">
+    <text class="fund-name">{{name}}</text>
+    <text class="fund-code">{{code}}</text>
+  </view>
+
+  <view class="input-card">
+    <view class="input-row">
+      <text class="input-label">持有份额</text>
+      <input
+        class="input-field"
+        type="digit"
+        placeholder="输入持有份额"
+        value="{{num}}"
+        bindinput="onInputNum"
+      />
+    </view>
+    <view class="input-row">
+      <text class="input-label">成本价</text>
+      <input
+        class="input-field"
+        type="digit"
+        placeholder="输入每份成本价"
+        value="{{cost}}"
+        bindinput="onInputCost"
+      />
+    </view>
+  </view>
+
+  <view class="preview-card">
+    <text class="preview-title">预览</text>
+    <view class="preview-row">
+      <text class="preview-label">持仓收益</text>
+      <text class="preview-value">{{previewGains}}</text>
+    </view>
+    <view class="preview-row">
+      <text class="preview-label">收益率</text>
+      <text class="preview-value">{{previewRate}}</text>
+    </view>
+  </view>
+
+  <view class="save-area">
+    <button class="btn-save" bindtap="onSave">保存</button>
+  </view>
+</view>

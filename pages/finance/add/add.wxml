@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="输入基金代码或名称"
+      value="{{keyword}}"
+      bindinput="onInput"
+      focus="true"
+    />
+  </view>
+
+  <view class="searching" wx:if="{{searching}}">
+    <text class="searching-text">搜索中...</text>
+  </view>
+
+  <view class="empty" wx:elif="{{keyword.length > 0 && searchResult.length === 0 && !searching}}">
+    <text class="empty-text">未找到相关基金</text>
+  </view>
+
+  <view class="result-list" wx:elif="{{searchResult.length > 0}}">
+    <view
+      class="result-item"
+      wx:for="{{searchResult}}"
+      wx:key="code"
+    >
+      <view class="result-info">
+        <text class="result-name">{{item.name}}</text>
+        <text class="result-code">{{item.code}} {{item.type}}</text>
+      </view>
+      <view
+        class="result-btn {{item.added ? 'added' : ''}}"
+        bindtap="onAdd"
+        data-code="{{item.code}}"
+        data-name="{{item.name}}"
+      >
+        <text>{{item.added ? '已添加' : '添加'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="hint" wx:else>
+    <text class="hint-icon">🔍</text>
+    <text class="hint-text">输入6位基金代码或名称搜索</text>
+  </view>
+</view>

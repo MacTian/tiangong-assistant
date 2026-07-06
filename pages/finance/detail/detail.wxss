@@ -1,0 +1,184 @@
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #ecf0f1;
+  border-top: 4rpx solid #2c3e50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #7f8c8d;
+}
+
+.fund-header {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  text-align: center;
+}
+
+.fund-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.fund-code {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.6);
+  margin-top: 8rpx;
+}
+
+.fund-nav-big {
+  display: block;
+  font-size: 64rpx;
+  font-weight: bold;
+  margin: 20rpx 0 8rpx;
+}
+
+.fund-change {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.fund-time {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.5);
+  margin-top: 12rpx;
+}
+
+.chart-section {
+  margin: 20rpx;
+  padding: 20rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.05);
+}
+
+.chart-header {
+  margin-bottom: 16rpx;
+}
+
+.chart-title {
+  font-size: 28rpx;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.chart-tabs {
+  white-space: nowrap;
+  padding: 0 10rpx;
+  margin-bottom: 16rpx;
+}
+
+.chart-tab {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  font-size: 24rpx;
+  color: #95a5a6;
+  margin-right: 12rpx;
+  border-radius: 24rpx;
+  background: #f5f5f5;
+}
+
+.chart-tab.active {
+  background: #3498db;
+  color: #ffffff;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 300rpx;
+}
+
+.holding-card {
+  margin: 0 20rpx 20rpx;
+  padding: 24rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.05);
+}
+
+.card-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20rpx;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #ecf0f1;
+}
+
+.card-row:last-child {
+  border-bottom: none;
+}
+
+.card-label {
+  font-size: 26rpx;
+  color: #7f8c8d;
+}
+
+.card-value {
+  font-size: 26rpx;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  padding: 20rpx;
+  gap: 20rpx;
+}
+
+.btn-edit {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #3498db;
+  color: #ffffff;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.btn-delete {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #ecf0f1;
+  color: #e74c3c;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.up { color: #e74c3c; }
+.down { color: #27ae60; }

@@ -9,6 +9,10 @@
     "pages/admin/logs/logs",
     "pages/admin/history/history",
     "pages/admin/offline/offline",
+    "pages/finance/index/index",
+    "pages/finance/add/add",
+    "pages/finance/detail/detail",
+    "pages/finance/edit/edit",
     "pages/privacy/privacy"
   ],
   "window": {
@@ -40,6 +44,12 @@
         "text": "管理",
         "iconPath": "images/admin.png",
         "selectedIconPath": "images/admin-active.png"
+      },
+      {
+        "pagePath": "pages/finance/index/index",
+        "text": "理财",
+        "iconPath": "images/wallet.png",
+        "selectedIconPath": "images/wallet-active.png"
       }
     ]
   },

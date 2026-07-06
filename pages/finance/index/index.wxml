@@ -1,0 +1,76 @@
+<view class="container">
+  <!-- 收益概览卡片 -->
+  <view class="summary-card">
+    <view class="summary-header">
+      <text class="summary-label">总资产(元)</text>
+      <view class="refresh-toggle" bindtap="onToggleRefresh">
+        <text class="refresh-text">{{autoRefresh ? '实时更新' : '暂停更新'}}</text>
+      </view>
+    </view>
+    <text class="summary-total">{{summary.totalAmount}}</text>
+    <view class="summary-row">
+      <view class="summary-item">
+        <text class="summary-item-label">持仓收益</text>
+        <text class="summary-item-value {{summary.totalGains >= 0 ? 'up' : 'down'}}">
+          {{summary.totalGains}} ({{summary.totalGainsRate}}%)
+        </text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-item-label">今日预估收益</text>
+        <text class="summary-item-value {{summary.todayGains >= 0 ? 'up' : 'down'}}">
+          {{summary.todayGains}} ({{summary.todayGainsRate}}%)
+        </text>
+      </view>
+    </view>
+    <text class="summary-count" wx:if="{{summary.fundCount > 0}}">含{{summary.fundCount}}只基金</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading && list.length === 0}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:elif="{{list.length === 0}}">
+    <text class="empty-icon">📊</text>
+    <text class="empty-text">点击 + 添加你的第一只基金</text>
+  </view>
+
+  <!-- 基金列表 -->
+  <view class="fund-list" wx:else>
+    <view
+      class="fund-item"
+      wx:for="{{list}}"
+      wx:key="fundcode"
+      bindtap="onTapFund"
+      bindlongpress="onLongPressFund"
+      data-code="{{item.fundcode}}"
+      data-name="{{item.name}}"
+    >
+      <view class="fund-left">
+        <text class="fund-name">{{item.name}}</text>
+        <view class="fund-meta">
+          <text class="fund-code">{{item.fundcode}}</text>
+          <text class="fund-sector" wx:for="{{item.sectors}}" wx:key="*this" wx:for-item="sector">{{sector}}</text>
+        </view>
+      </view>
+      <view class="fund-right">
+        <text class="fund-gains {{item.gains >= 0 ? 'up' : 'down'}}">
+          {{item.gains >= 0 ? '+' : ''}}{{item.gains}} ({{item.gszzl >= 0 ? '+' : ''}}{{item.gszzl}}%)
+        </text>
+        <text class="fund-amount">{{item.amount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text class="disclaimer-text">数据来源于天天基金，仅供参考，不构成投资建议。估值数据存在延迟，实际净值以基金公司公布为准。投资有风险，入市需谨慎。</text>
+  </view>
+
+  <!-- 浮动添加按钮 -->
+  <view class="fab" bindtap="goAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

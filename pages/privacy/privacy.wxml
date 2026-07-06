@@ -25,13 +25,15 @@
 
   <view class="section">
     <text class="section-title">四、数据存储</text>
-    <text class="section-content">您的收藏数据仅存储在您的设备本地（通过微信小程序的本地存储 API），我们不会将您的数据上传到任何服务器。清除小程序缓存或卸载小程序将导致收藏数据丢失。</text>
+    <text class="section-content">您的收藏数据仅存储在您的设备本地（通过微信小程序的本地存储 API），我们不会将您的数据上传到任何服务器。清除小程序缓存或卸载小程序将导致收藏数据丢失。
+    理财功能中的持仓份额、成本价等数据同样纯本地存储，不上传至任何服务器。</text>
   </view>
 
   <view class="section">
     <text class="section-title">五、第三方服务</text>
     <text class="section-content">本小程序使用了以下第三方服务：
-    1. 一言 API（v1.hitokoto.cn）：用于获取每日金句内容。该服务的隐私政策请参考其官方网站。</text>
+    1. 一言 API（v1.hitokoto.cn）：用于获取每日金句内容。该服务的隐私政策请参考其官方网站。
+    2. 东方财富/天天基金 API：用于获取基金行情数据，仅供参考，不构成投资建议。</text>
   </view>
 
   <view class="section">

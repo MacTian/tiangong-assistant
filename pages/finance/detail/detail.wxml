@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载...</text>
+  </view>
+
+  <block wx:elif="{{fund}}">
+    <view class="fund-header">
+      <text class="fund-name">{{fund.name}}</text>
+      <text class="fund-code">{{fund.fundcode}}</text>
+      <text class="fund-nav-big {{fund.gszzl >= 0 ? 'up' : 'down'}}">
+        {{fund.hasReplace ? fund.dwjz : fund.gsz}}
+      </text>
+      <text class="fund-change {{fund.gszzl >= 0 ? 'up' : 'down'}}">
+        {{fund.gszzl >= 0 ? '+' : ''}}{{fund.gszzl}}%
+      </text>
+      <text class="fund-time">{{fund.hasReplace ? '净值日期' : '估值时间'}} {{fund.hasReplace ? fund.jzrq : fund.gztime}}</text>
+    </view>
+
+    <view class="chart-section">
+      <view class="chart-header">
+        <text class="chart-title">净值走势</text>
+      </view>
+      <scroll-view class="chart-tabs" scroll-x enable-flex>
+        <text class="chart-tab {{chartDays === 7 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="7">7天</text>
+        <text class="chart-tab {{chartDays === 30 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="30">1月</text>
+        <text class="chart-tab {{chartDays === 90 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="90">3月</text>
+        <text class="chart-tab {{chartDays === 180 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="180">6月</text>
+        <text class="chart-tab {{chartDays === 365 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="365">1年</text>
+        <text class="chart-tab {{chartDays === 1095 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="1095">3年</text>
+        <text class="chart-tab {{chartDays === 1825 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="1825">5年</text>
+        <text class="chart-tab {{chartDays === 99999 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="99999">全部</text>
+      </scroll-view>
+      <canvas type="2d" id="chart-canvas" class="chart-canvas"></canvas>
+    </view>
+
+    <view class="holding-card">
+      <text class="card-title">持仓信息</text>
+      <view class="card-row">
+        <text class="card-label">持有份额</text>
+        <text class="card-value">{{fund.num}}</text>
+      </view>
+      <view class="card-row">
+        <text class="card-label">成本价</text>
+        <text class="card-value">{{fund.cost}}</text>
+      </view>
+      <view class="card-row">
+        <text class="card-label">持仓收益</text>
+        <text class="card-value {{fund.costGains >= 0 ? 'up' : 'down'}}">
+          {{fund.costGains}} ({{fund.costGainsRate}}%)
+        </text>
+      </view>
+      <view class="card-row">
+        <text class="card-label">今日估值收益</text>
+        <text class="card-value {{fund.gains >= 0 ? 'up' : 'down'}}">
+          {{fund.gains}}
+        </text>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button class="btn-edit" bindtap="goEdit">编辑持仓</button>
+      <button class="btn-delete" bindtap="onDelete">删除</button>
+    </view>
+  </block>
+</view>
