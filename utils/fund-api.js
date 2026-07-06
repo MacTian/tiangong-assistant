@@ -10,14 +10,28 @@ function fetchSingleFund(fundCode) {
   return new Promise((resolve) => {
     wx.request({
       url: `https://fundgz.1234567.com.cn/js/${fundCode}.js?rt=${Date.now()}`,
+      dataType: 'text',
+      timeout: 15000,
       success(res) {
         if (res.statusCode === 200 && res.data) {
-          resolve(res.data)
+          try {
+            const text = typeof res.data === 'string' ? res.data : ''
+            const match = text.match(/jsonpgz\((.*)\)/s)
+            if (match) {
+              resolve(JSON.parse(match[1]))
+            } else {
+              resolve(null)
+            }
+          } catch (e) {
+            console.error('[fund-api] 解析基金数据失败:', fundCode, e)
+            resolve(null)
+          }
         } else {
           resolve(null)
         }
       },
-      fail() {
+      fail(err) {
+        console.error('[fund-api] 请求基金数据失败:', fundCode, err)
         resolve(null)
       }
     })
@@ -45,6 +59,7 @@ function searchFund(keyword) {
   return new Promise((resolve, reject) => {
     wx.request({
       url: 'https://fundsuggest.eastmoney.com/FundSearch/api/FundSearchAPI.ashx',
+      timeout: 15000,
       data: {
         m: 9,
         key: keyword,
