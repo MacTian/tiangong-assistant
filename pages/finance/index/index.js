@@ -17,6 +17,7 @@ Page({
     },
     trading: false,
     autoRefresh: true,
+    showAmount: true,
     timer: null
   },
 
@@ -129,6 +130,10 @@ Page({
         fundCount: list.length
       }
     })
+  },
+
+  onToggleAmount() {
+    this.setData({ showAmount: !this.data.showAmount })
   },
 
   startAutoRefresh() {

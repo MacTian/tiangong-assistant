@@ -7,18 +7,21 @@
         <text class="refresh-text">{{autoRefresh ? '实时更新' : '暂停更新'}}</text>
       </view>
     </view>
-    <text class="summary-total">{{summary.totalAmount}}</text>
+    <view class="total-row" bindtap="onToggleAmount">
+      <text class="summary-total">{{showAmount ? summary.totalAmount : '****'}}</text>
+      <text class="eye-icon">{{showAmount ? '👁' : '🔒'}}</text>
+    </view>
     <view class="summary-row">
       <view class="summary-item">
         <text class="summary-item-label">持仓收益</text>
         <text class="summary-item-value {{summary.totalGains >= 0 ? 'up' : 'down'}}">
-          {{summary.totalGains}} ({{summary.totalGainsRate}}%)
+          {{showAmount ? summary.totalGains : '****'}} ({{summary.totalGainsRate}}%)
         </text>
       </view>
       <view class="summary-item">
         <text class="summary-item-label">今日预估收益</text>
         <text class="summary-item-value {{summary.todayGains >= 0 ? 'up' : 'down'}}">
-          {{summary.todayGains}} ({{summary.todayGainsRate}}%)
+          {{showAmount ? summary.todayGains : '****'}} ({{summary.todayGainsRate}}%)
         </text>
       </view>
     </view>
@@ -57,9 +60,9 @@
       </view>
       <view class="fund-right">
         <text class="fund-gains {{item.gains >= 0 ? 'up' : 'down'}}">
-          {{item.gains >= 0 ? '+' : ''}}{{item.gains}} ({{item.gszzl >= 0 ? '+' : ''}}{{item.gszzl}}%)
+          {{showAmount ? (item.gains >= 0 ? '+' : '') + item.gains : '****'}} ({{item.gszzl >= 0 ? '+' : ''}}{{item.gszzl}}%)
         </text>
-        <text class="fund-amount">{{item.amount}}</text>
+        <text class="fund-amount">{{showAmount ? item.amount : '****'}}</text>
       </view>
     </view>
   </view>

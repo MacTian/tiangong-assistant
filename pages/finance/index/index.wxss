@@ -34,12 +34,22 @@
   color: #ffffff;
 }
 
+.total-row {
+  display: flex;
+  align-items: center;
+  margin: 16rpx 0;
+}
+
 .summary-total {
-  display: block;
   font-size: 56rpx;
   font-weight: bold;
   color: #ffffff;
-  margin: 16rpx 0;
+}
+
+.eye-icon {
+  font-size: 28rpx;
+  margin-left: 16rpx;
+  opacity: 0.7;
 }
 
 .summary-row {
