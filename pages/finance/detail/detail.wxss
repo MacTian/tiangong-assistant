@@ -1,6 +1,9 @@
 .container {
-  min-height: 100vh;
+  height: 100vh;
   background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .loading {
@@ -71,11 +74,15 @@
 }
 
 .chart-section {
-  margin: 20rpx;
-  padding: 20rpx;
+  flex: 1;
+  margin: 16rpx 20rpx;
+  padding: 16rpx;
   background: #ffffff;
   border-radius: 16rpx;
   box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .chart-header {
@@ -117,12 +124,12 @@
 
 .chart-canvas {
   width: 100%;
-  height: 300rpx;
+  flex: 1;
 }
 
 .holding-card {
-  margin: 0 20rpx 20rpx;
-  padding: 24rpx;
+  margin: 0 20rpx 16rpx;
+  padding: 16rpx;
   background: #ffffff;
   border-radius: 16rpx;
   box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.05);
@@ -133,13 +140,13 @@
   font-size: 28rpx;
   font-weight: bold;
   color: #2c3e50;
-  margin-bottom: 20rpx;
+  margin-bottom: 12rpx;
 }
 
 .card-row {
   display: flex;
   justify-content: space-between;
-  padding: 12rpx 0;
+  padding: 8rpx 0;
   border-bottom: 1rpx solid #ecf0f1;
 }
 
@@ -160,14 +167,14 @@
 
 .actions {
   display: flex;
-  padding: 20rpx;
+  padding: 12rpx 20rpx;
   gap: 20rpx;
 }
 
 .btn-edit {
   flex: 1;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 72rpx;
+  line-height: 72rpx;
   padding: 0;
   background: #3498db;
   color: #ffffff;
@@ -181,8 +188,8 @@
 
 .btn-delete {
   flex: 1;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 72rpx;
+  line-height: 72rpx;
   padding: 0;
   background: #ecf0f1;
   color: #e74c3c;
