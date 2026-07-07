@@ -189,6 +189,7 @@
   font-size: 22rpx;
   color: #95a5a6;
   margin-top: 4rpx;
+  white-space: nowrap;
 }
 
 .fund-gains {
