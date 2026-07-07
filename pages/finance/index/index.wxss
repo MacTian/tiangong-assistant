@@ -219,6 +219,27 @@
   text-align: center;
 }
 
+.fab-sort {
+  position: fixed;
+  right: 40rpx;
+  bottom: 260rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.fab-sort-icon {
+  font-size: 36rpx;
+  color: #3498db;
+  font-weight: bold;
+}
+
 .fab {
   position: fixed;
   right: 40rpx;

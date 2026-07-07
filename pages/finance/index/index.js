@@ -18,6 +18,7 @@ Page({
     trading: false,
     autoRefresh: true,
     showAmount: true,
+    sortAsc: true,
     lastUpdate: '',
     timer: null
   },
@@ -81,8 +82,9 @@ Page({
         }
       })
 
-      // 按今日预估收益百分比从小到大排序
-      list.sort((a, b) => (a.gszzl || 0) - (b.gszzl || 0))
+      // 按今日预估收益百分比排序
+      const sortAsc = this.data.sortAsc
+      list.sort((a, b) => sortAsc ? (a.gszzl || 0) - (b.gszzl || 0) : (b.gszzl || 0) - (a.gszzl || 0))
 
       // 取最新估值时间
       const updateTime = list.find(item => item.gztime)
@@ -145,6 +147,12 @@ Page({
 
   onToggleAmount() {
     this.setData({ showAmount: !this.data.showAmount })
+  },
+
+  onToggleSort() {
+    const sortAsc = !this.data.sortAsc
+    const list = this.data.list.slice().sort((a, b) => sortAsc ? (a.gszzl || 0) - (b.gszzl || 0) : (b.gszzl || 0) - (a.gszzl || 0))
+    this.setData({ sortAsc, list })
   },
 
   startAutoRefresh() {
