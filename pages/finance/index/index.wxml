@@ -62,7 +62,10 @@
         <text class="fund-gains {{item.gains >= 0 ? 'up' : 'down'}}">
           {{showAmount ? (item.gains >= 0 ? '+' : '') + item.gains : '****'}} ({{item.gszzl >= 0 ? '+' : ''}}{{item.gszzl}}%)
         </text>
-        <text class="fund-amount">{{showAmount ? item.amount : '****'}}</text>
+        <text class="fund-amount">
+          {{showAmount ? item.amount : '****'}}
+          <text class="{{item.costGains >= 0 ? 'up' : 'down'}}">{{showAmount ? (item.costGains >= 0 ? ' +' : ' ') + item.costGains : ' ****'}} ({{item.costGainsRate}}%)</text>
+        </text>
       </view>
     </view>
   </view>
