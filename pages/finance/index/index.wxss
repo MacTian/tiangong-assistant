@@ -223,20 +223,20 @@
   position: fixed;
   right: 40rpx;
   bottom: 260rpx;
-  width: 80rpx;
-  height: 80rpx;
-  background: #ffffff;
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(52, 152, 219, 0.6);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.15);
+  box-shadow: 0 8rpx 24rpx rgba(52,152,219,0.3);
   z-index: 100;
 }
 
 .fab-sort-icon {
-  font-size: 36rpx;
-  color: #3498db;
+  font-size: 40rpx;
+  color: #ffffff;
   font-weight: bold;
 }
 
