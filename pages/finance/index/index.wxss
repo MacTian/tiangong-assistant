@@ -246,12 +246,12 @@
   bottom: 140rpx;
   width: 100rpx;
   height: 100rpx;
-  background: #3498db;
+  background: rgba(52, 152, 219, 0.6);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8rpx 24rpx rgba(52,152,219,0.4);
+  box-shadow: 0 8rpx 24rpx rgba(52,152,219,0.3);
   z-index: 100;
 }
 
