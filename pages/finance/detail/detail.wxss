@@ -31,7 +31,7 @@
 }
 
 .fund-header {
-  padding: 30rpx;
+  padding: 20rpx 30rpx;
   background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
   text-align: center;
 }
@@ -52,9 +52,9 @@
 
 .fund-nav-big {
   display: block;
-  font-size: 64rpx;
+  font-size: 56rpx;
   font-weight: bold;
-  margin: 20rpx 0 8rpx;
+  margin: 10rpx 0 4rpx;
 }
 
 .fund-change {
@@ -67,7 +67,7 @@
   display: block;
   font-size: 22rpx;
   color: rgba(255,255,255,0.5);
-  margin-top: 12rpx;
+  margin-top: 6rpx;
 }
 
 .chart-section {
