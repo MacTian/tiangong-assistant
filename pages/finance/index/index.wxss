@@ -34,6 +34,13 @@
   color: #ffffff;
 }
 
+.refresh-time {
+  display: block;
+  font-size: 18rpx;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2rpx;
+}
+
 .total-row {
   display: flex;
   align-items: center;

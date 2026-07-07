@@ -18,6 +18,7 @@ Page({
     trading: false,
     autoRefresh: true,
     showAmount: true,
+    lastUpdate: '',
     timer: null
   },
 
@@ -80,7 +81,14 @@ Page({
         }
       })
 
-      this.setData({ list, loading: false, trading: isDuringTrading() })
+      // 取最新估值时间
+      const updateTime = list.find(item => item.gztime)
+      this.setData({
+        list,
+        loading: false,
+        trading: isDuringTrading(),
+        lastUpdate: updateTime ? updateTime.gztime : ''
+      })
       this.calcSummary(list)
     } catch (err) {
       console.error('刷新基金数据失败:', err)

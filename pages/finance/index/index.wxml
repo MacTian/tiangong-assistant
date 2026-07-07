@@ -5,6 +5,7 @@
       <text class="summary-label">总资产(元)</text>
       <view class="refresh-toggle" bindtap="onToggleRefresh">
         <text class="refresh-text">{{autoRefresh ? '实时更新' : '暂停更新'}}</text>
+        <text class="refresh-time" wx:if="{{lastUpdate}}">{{lastUpdate}}</text>
       </view>
     </view>
     <view class="total-row" bindtap="onToggleAmount">
