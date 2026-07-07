@@ -162,22 +162,30 @@
   flex: 1;
   height: 80rpx;
   line-height: 80rpx;
+  padding: 0;
   background: #3498db;
   color: #ffffff;
   font-size: 28rpx;
   border-radius: 40rpx;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-delete {
   flex: 1;
   height: 80rpx;
   line-height: 80rpx;
+  padding: 0;
   background: #ecf0f1;
   color: #e74c3c;
   font-size: 28rpx;
   border-radius: 40rpx;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .up { color: #e74c3c; }
