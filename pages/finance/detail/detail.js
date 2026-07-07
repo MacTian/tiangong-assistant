@@ -8,7 +8,8 @@ Page({
     loading: true,
     fund: null,
     chartDays: 7,
-    chartData: []
+    chartData: [],
+    trendRate: ''
   },
 
   onLoad(options) {
@@ -70,7 +71,16 @@ Page({
   async loadChart() {
     try {
       const data = await getFundNavHistory(this.code, this.data.chartDays)
-      this.setData({ chartData: data })
+      // 计算区间涨跌幅
+      let trendRate = ''
+      if (data && data.length >= 2) {
+        const first = data[0].nav
+        const last = data[data.length - 1].nav
+        if (first > 0) {
+          trendRate = Number(((last - first) / first * 100).toFixed(2))
+        }
+      }
+      this.setData({ chartData: data, trendRate })
       this.drawChart(data)
     } catch (err) {
       console.error('加载历史净值失败:', err)

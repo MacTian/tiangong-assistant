@@ -20,6 +20,7 @@
     <view class="chart-section">
       <view class="chart-header">
         <text class="chart-title">净值走势</text>
+        <text class="chart-trend {{trendRate >= 0 ? 'up' : 'down'}}" wx:if="{{trendRate !== ''}}">{{trendRate >= 0 ? '+' : ''}}{{trendRate}}%</text>
       </view>
       <scroll-view class="chart-tabs" scroll-x enable-flex>
         <text class="chart-tab {{chartDays === 7 ? 'active' : ''}}" bindtap="onSwitchDays" data-days="7">7天</text>
