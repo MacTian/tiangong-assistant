@@ -81,6 +81,9 @@ Page({
         }
       })
 
+      // 按今日预估收益百分比从小到大排序
+      list.sort((a, b) => (a.gszzl || 0) - (b.gszzl || 0))
+
       // 取最新估值时间
       const updateTime = list.find(item => item.gztime)
       this.setData({
